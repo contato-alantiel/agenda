@@ -51,8 +51,13 @@ $( document ).ready(function() {
           nextPos = $this.parent().children().index($this),
           lastItem = $(this).parent().children().length - 1;
 
-      updateNavs(nextPos);
-      updateContent(curPos, nextPos, lastItem);
+	  if(curPos !== 0) {
+	      updateNavs(nextPos);
+    	  updateContent(curPos, nextPos, lastItem);
+	  }
+	  else {
+		  alert('Faça o login para acessar as funcionalidades.')
+	  }
 
     }
 
