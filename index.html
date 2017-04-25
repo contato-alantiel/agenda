@@ -75,8 +75,8 @@
           </li>
           <li class="l-section section section">
             <div class="work">
-              <h2>Agenda</h2>
-              <div class="work--lockup">
+              <h2>Agenda: <a href="#" class="schedule-toggle-link active">diária</a> | <a href="#" class="schedule-toggle-link">semanal</a></h2>
+              <div class="work--lockup schedule-toggle">
                 <ul class="slider">
                   <li class="slider--item slider--item-left">
                     <a href="#0">
@@ -139,6 +139,31 @@
                   </svg>
                 </div>
               </div>
+
+			  <div class="schedule-toggle hide">
+				<table>
+					<thead>
+				        <tr>
+							<th>Seg</th>
+							<th>Ter</th>
+							<th>Qua</th>
+							<th>Qui</th>
+							<th>Sex</th>
+							<th>Sáb</th>
+				        </tr>
+					</thead>
+				    <tbody>
+						<tr>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						</tr>
+				    </tbody>
+				</table>
+			  </div>
             </div>
           </li>
           <li class="l-section section">
@@ -148,16 +173,44 @@
               <form class="work-request">
                 <div class="work-request--information">
                   <div class="information-name">
-                    <input id="name" type="text" spellcheck="false">
-                    <label for="name">Nome</label>
+                    <input id="customer-name" type="text" spellcheck="false">
+                    <label for="customer-name">Nome</label>
                   </div>
                   <div class="information-email">
-                    <input id="email" type="email" spellcheck="false">
-                    <label for="email">Email</label>
+                    <input id="customer-email" type="email" spellcheck="false">
+                    <label for="customer-email">Email</label>
+                  </div>
+				</div>
+
+				<div class="work-request--information">
+				  <div class="information-report">
+                    <textarea id="customer-report" spellcheck="false"></textarea>
+                    <label for="customer-report">Laudo</label>
                   </div>
                 </div>
-                <input type="submit" value="Salvar">
+                <input type="submit" value="Salvar" id="add-customer">
               </form>
+
+			  <div id="customer-list" class="hide">
+				<div>
+					<table id="customer">
+				      <thead>
+				        <tr>
+							<th>Id</th>
+				            <th>Name</th>
+				            <th>Email</th>
+							<th>Acões</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				      </tbody>
+					</table>
+				</div>
+			  </div>
+
+			  <p>
+				  <a id="see-customer-list" href="#"><span>ver clientes cadastrados</span><span class="hide">ver cadastro de clientes</span></a>
+			  </p>
             </div>
           </li>
         </ul>
@@ -174,5 +227,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 <script src="assets/js/functions-min.js"></script>
+
+<script src="assets/js/indexeddbshim.min.js"></script>
+<script src="assets/js/jquery.indexeddb.min.js"></script>
+<script src="assets/js/customers.js"></script>
 </body>
 </html>
