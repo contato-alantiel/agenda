@@ -145,18 +145,39 @@
             <div class="hire">
               <h2>Cadastro de clientes</h2>
 
+				  <div id="customer-list">
+					  <table id="customer" style="width: 100%">
+						 <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                        <th>
+                            Object
+                            <div class = "action" style ="float:right; width : 200px">
+                                <a href = "javascript:loadFromDB('customer')">Show all</a>
+                                <a href = "javascript:sort('customer', 'itemId')">Sort by ItemId</a>
+                            </div>
+                        </th>
+                    </tr>
+					  </table>
+				  </div>
+
               <form class="work-request">
+					 <input id="customer-id" type="hidden" value="0">
                 <div class="work-request--information">
                   <div class="information-name">
-                    <input id="name" type="text" spellcheck="false">
+                    <input id="customer-name" type="text" spellcheck="false">
                     <label for="name">Nome</label>
                   </div>
                   <div class="information-email">
-                    <input id="email" type="email" spellcheck="false">
+                    <input id="customer-email" type="email" spellcheck="false">
                     <label for="email">Email</label>
                   </div>
                 </div>
-                <input type="submit" value="Salvar">
+                <input id="add-customer" type="submit" value="Salvar">
               </form>
             </div>
           </li>
@@ -173,6 +194,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+
+<script type = "text/javascript" src = "assets/js/indexeddbshim.min.js"></script>
+<script type = "text/javascript" src="assets/js/jquery.indexeddb.min.js"></script>
+
 <script src="assets/js/functions-min.js"></script>
+<script src="assets/js/customers.js"></script>
 </body>
 </html>
