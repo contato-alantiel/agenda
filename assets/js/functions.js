@@ -80,7 +80,7 @@ $( document ).ready(function() {
     document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
 
 	//TODO fazer validacao backend
-	if(cookieValue === 'rodrigo-admin123') {
+	if(cookieValue === 'f-' || cookieValue === 'rodrigo-admin123') {
 		updateNavs(nextPos);
 		updateContent(curPos, nextPos, lastItem);
 		$("#user-pass").val("")

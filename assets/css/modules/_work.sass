@@ -7,12 +7,13 @@
   flex-direction: column
   justify-content: center
   margin: 0 auto
+  line-height: 1.2
 
   @media (max-width: 1180px)
     max-width: 100%
 
   h2
-    margin: 0 0 20px 0
+    margin: 0 0 10px 0
     font-size: 30px
     text-align: center
 
@@ -43,13 +44,11 @@
           text-transform: uppercase
 
         &-description
-          display: none
           max-width: 250px
           margin: 0 auto
 
         &-image
           width: 150px
-          height: 150px
           margin: 0 auto
           border-radius: 50%
           overflow: hidden
@@ -58,20 +57,15 @@
             width: 100%
 
         &-left
-          top: 50%
           left: 0
-          transform: translateY(-50%)
           display: block
 
         &-right
-          top: 50%
           right: 0
-          transform: translateY(-50%)
           display: block
 
         &-center
           position: relative
-          top: 30px
           left: 50%
           transform: translateX(-50%)
           display: block
@@ -88,7 +82,6 @@
 
           .slider--item-image
             width: 300px
-            height: 300px
 
     .slider--next,
     .slider--prev
@@ -102,6 +95,7 @@
       background-color: $muted-gray
       border-radius: 50%
       cursor: pointer
+      display: none
 
       svg
         width: 20px

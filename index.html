@@ -75,50 +75,38 @@
           </li>
           <li class="l-section section section">
             <div class="work">
-              <h2>Agenda</h2>
-              <div class="work--lockup">
+              <h2>Agenda: <a href="#" class="schedule-toggle-link active">diária</a> | <a href="#" class="schedule-toggle-link">semanal</a></h2>
+              <div class="work--lockup schedule-toggle">
                 <ul class="slider">
                   <li class="slider--item slider--item-left">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <p>06-07hrs</p>
-                        <p>07-08hrs</p>
-                        <p>08-09hrs</p>
-                        <p>09-10hrs</p>
-                        <p>10-11hrs</p>
-                        <p>11-12hrs</p>
-                      </div>
-                      <p class="slider--item-title">Manhã</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
-                    </a>
+                   <div class="slider--item-image" id="scheduledTime">
+                     <p><a href="#0">08-09hrs</a></p>
+                     <p><a href="#0">09-10hrs</a></p>
+                     <p><a href="#0">14-15hrs</a></p>
+                     <p><a href="#0">15-16hrs</a></p>
+                     <p><a href="#0">16-17hrs</a></p>
+                     <p><a href="#0">17-18hrs</a></p>
+                   </div>
+                   <p class="slider--item-title">Horários ocupados</p>
+                   <p class="slider--item-description">Clique em algum deles para ver detalhes.</p>
                   </li>
                   <li class="slider--item slider--item-center">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <p>12-13hrs</p>
-                        <p>13-14hrs</p>
-                        <p>14-15hrs</p>
-                        <p>15-16hrs</p>
-                        <p>16-17hrs</p>
-                        <p>17-18hrs</p>
-                      </div>
-                      <p class="slider--item-title">Tarde</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
-                    </a>
+                   <div class="slider--item-image" id="freeTime">
+                     <p><a href="#0">06-07hrs</a></p>
+                     <p><a href="#0">10-12hrs</a></p>
+                     <p><a href="#0">18-21hrs</a></p>
+                   </div>
+                   <p class="slider--item-title">Horários disponíveis</p>
+                   <p class="slider--item-description">Clique em algum dos horários disponíveis para agendar.</p>
                   </li>
                   <li class="slider--item slider--item-right">
-                    <a href="#0">
-                      <div class="slider--item-image">
-	                    <p>18-19hrs</p>
-                        <p>19-20hrs</p>
-                        <p>20-21hrs</p>
-                        <p>21-22hrs</p>
-                        <p>22-23hrs</p>
-                        <p>23-24hrs</p>
-                      </div>
-                      <p class="slider--item-title">Noite</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
-                    </a>
+                   <div class="slider--item-image">
+                     <p><a href="#0">12-13hrs</a></p>
+                     <p><a href="#0">13-14hrs</a></p>
+                     <p><a href="#0">22-23hrs</a></p>
+                   </div>
+                   <p class="slider--item-title">Horários bloqueados</p>
+                   <p class="slider--item-description">Clique para saber o motivo.</p>
                   </li>
                 </ul>
                 <div class="slider--prev">
@@ -139,48 +127,80 @@
                   </svg>
                 </div>
               </div>
+
+			  <div class="schedule-toggle hide">
+				<table>
+					<thead>
+				        <tr>
+							<th>Seg</th>
+							<th>Ter</th>
+							<th>Qua</th>
+							<th>Qui</th>
+							<th>Sex</th>
+							<th>Sáb</th>
+				        </tr>
+					</thead>
+				    <tbody>
+						<tr>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						    <td>-</td>
+						</tr>
+				    </tbody>
+				</table>
+			  </div>
             </div>
           </li>
           <li class="l-section section">
-            <div class="hire">
-              <h2>Cadastro de clientes</h2>
+				<div class="hire">
+					<h2>Cadastro de clientes</h2>
 
-				  <div id="customer-list">
-					  <table id="customer" style="width: 100%">
-						 <tr>
-                        <th>
-                            Id
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                        <th>
-                            Object
-                            <div class = "action" style ="float:right; width : 200px">
-                                <a href = "javascript:loadFromDB('customer')">Show all</a>
-                                <a href = "javascript:sort('customer', 'itemId')">Sort by ItemId</a>
-                            </div>
-                        </th>
-                    </tr>
-					  </table>
-				  </div>
+					<div id="customer-list" class="hide">
+						<table id="customer">
+							<thead>
+							  <tr>
+								<th>Id</th>
+									<th>Name</th>
+									<th>Email</th>
+								<th>Acões</th>
+							  </tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 
-              <form class="work-request">
-					 <input id="customer-id" type="hidden" value="0">
-                <div class="work-request--information">
-                  <div class="information-name">
-                    <input id="customer-name" type="text" spellcheck="false">
-                    <label for="name">Nome</label>
-                  </div>
-                  <div class="information-email">
-                    <input id="customer-email" type="email" spellcheck="false">
-                    <label for="email">Email</label>
-                  </div>
-                </div>
-                <input id="add-customer" type="submit" value="Salvar">
-              </form>
-            </div>
-          </li>
+					<form class="work-request">
+						<input id="customer-id" type="hidden" value="0">
+						<div class="work-request--information">
+							<div class="information-name">
+								<input id="customer-name" type="text" spellcheck="false">
+
+								<label for="customer-name">Nome</label>
+							</div> <!--.information-name-->
+						   <div class="information-email">
+						     <input id="customer-email" type="email" spellcheck="false">
+						     <label for="customer-email">Email</label>
+						   </div> <!--.information-email-->
+
+							<div class="information-report">
+								<textarea id="customer-report" spellcheck="false"></textarea>
+								<label for="customer-report">Laudo</label>
+							</div>
+						   <input type="submit" value="Salvar" id="add-customer">
+						</div> <!--.work-request--information-->
+
+					</form>
+					<p>
+					  <a id="see-customer-list" href="#"><span>ver clientes cadastrados</span><span class="hide">ver cadastro de clientes</span></a>
+					</p>
+				</div> <!--.hire-->
+
+				</div>
+			</li>
         </ul>
       </div>
     </div>
@@ -200,5 +220,6 @@
 
 <script src="assets/js/functions-min.js"></script>
 <script src="assets/js/customers.js"></script>
+<script src="assets/js/scheduler.js"></script>
 </body>
 </html>
