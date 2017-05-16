@@ -3,31 +3,28 @@ $( document ).ready(function() {
 	// Simply open the database once so that it is created with the required tables
 	$.indexedDB("RodrigoFisio", {
 		"schema": {
-			"2": function(versionTransaction){
+			"3": function(versionTransaction){
 				var scheduledTime = versionTransaction.createObjectStore("scheduledTime", {
 					"keyPath": "scheduledTimeId"
 				});
 			},
 
-			"3": function(versionTransaction){
+			"4": function(versionTransaction){
 				var freeTime = versionTransaction.createObjectStore("freeTime", {
 					"keyPath": "freeTimeId"
 				});
 				
-				//freeTime.createIndex("time",{unique:false});
-				//freeTime.createIndex("date",{unique:false});
 			}, 
-			"4": function(versionTransaction){
+			"5": function(versionTransaction){
 				versionTransaction.objectStore("scheduledTime").createIndex("date");
 				versionTransaction.objectStore("scheduledTime").createIndex("time");
 			}, 
-			"5": function(versionTransaction){
+			"6": function(versionTransaction){
 				versionTransaction.objectStore("freeTime").createIndex("date");
 				versionTransaction.objectStore("freeTime").createIndex("time");
 			}
 		}
 	}).done(function(){
-
 		// Once the DB is opened with the object stores set up, show data from all tables
 		window.setTimeout(function(){
 				// TODO retirar
@@ -86,13 +83,13 @@ $( document ).ready(function() {
 		emptyDiv(tableName);
 
 		var objectStore = $.indexedDB("RodrigoFisio").objectStore(tableName);
-      objectStore.index("date").each(function(elem){
-   		addRowInHTMLDiv(tableName, elem.key, elem.value);
-   	}, [date]).then(function(res, e){
+      	objectStore.index("date").each(function(elem){
+   			addRowInHTMLDiv(tableName, elem.key, elem.value);
+	   	}, [date]).then(function(res, e){
         			console.log("then");
-      }, function(err, e){
+      	}, function(err, e){
         			console.log("err", err, e);
-      });
+      	});
 
 		/*_($.indexedDB("RodrigoFisio").objectStore(tableName).index("date").each(function(elem){
 			console.log(elem);
@@ -110,10 +107,19 @@ $( document ).ready(function() {
 		var row = document.createElement("p");
 		var html = [];
 
-		html = html.concat(["<a href='#0'>"+values['time']+"hrs</a>"]);
+		html = html.concat(["<a class='"+tableName+" time' href='#0'>"+values['time']+"hrs</a>"]);
 			
 		row.innerHTML = html.join("");
 		div.appendChild(row);
+
+		$(".time").unbind("click").click(
+			function(e){
+				$.indexedDB("RodrigoFisio").objectStore("customer").get(1).done(function(res){
+					$( "#dialog" ).find("p").text("Paciente: " + res['customerName']);
+					$( "#dialog" ).dialog();
+				});
+			}
+		);
 	}
 
 	function addToScheduledTime(schedulerOBJ){

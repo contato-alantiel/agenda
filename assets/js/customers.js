@@ -8,22 +8,26 @@ $( document ).ready(function() {
 					"keyPath": "customerId"
 				});
 				
-				customer.createIndex("customerId");
+			},
+			"2": function(versionTransaction){
+				versionTransaction.objectStore("customer").createIndex("customerId");
+				versionTransaction.objectStore("customer").createIndex("customerEmail");
 			}
 		}
-	}).done(function(){
-		// Once the DB is opened with the object stores set up, show data from all tables
-		window.setTimeout(function(){
-			//emptyDB("customer");
-			loadFromDB("customer");
-				//downloadCatalog();
-			}, 200);
-   });
+	});
+
+
+	//loading customer
+	window.setTimeout(function(){
+		//emptyDB("customer");
+		loadFromDB("customer");
+	}, 200);
 
 	// Iterate over each record in a table and display it
    function loadFromDB(table){
 		emptyTable(table);
 		_($.indexedDB("RodrigoFisio").objectStore(table).each(function(elem){
+			console.log("customer:" + elem);
 			addRowInHTMLTable(table, elem.key, elem.value);
 		}));
    }
@@ -87,6 +91,7 @@ $( document ).ready(function() {
 
 				transaction.objectStore("customer").add(customerOBJ).fail(function(e){
 					alert('Ocorreu algum erro, por favor verifique os campos e tente novamente...');
+					console.log(e);
 				}).done(function(){
 					alert('Cliente salvo com sucesso.');
 					$("form:visible")[0].reset()
