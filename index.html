@@ -40,7 +40,7 @@
           <ul class="side-nav">
             <li class="is-active"><span>Início</span></li>
             <li><span>Agenda</span></li>
-            <li><span>Clientes</span></li>
+            <li><span>Pacientes</span></li>
           </ul>
         </nav>
         <ul class="l-main-content main-content">
@@ -81,30 +81,18 @@
                 <ul class="slider">
                   <li class="slider--item slider--item-left">
                    <div class="slider--item-image" id="scheduledTime">
-                     <p><a href="#0">08-09hrs</a></p>
-                     <p><a href="#0">09-10hrs</a></p>
-                     <p><a href="#0">14-15hrs</a></p>
-                     <p><a href="#0">15-16hrs</a></p>
-                     <p><a href="#0">16-17hrs</a></p>
-                     <p><a href="#0">17-18hrs</a></p>
                    </div>
                    <p class="slider--item-title">Horários ocupados</p>
                    <p class="slider--item-description">Clique em algum deles para ver detalhes.</p>
                   </li>
                   <li class="slider--item slider--item-center">
                    <div class="slider--item-image" id="freeTime">
-                     <p><a href="#0">06-07hrs</a></p>
-                     <p><a href="#0">10-12hrs</a></p>
-                     <p><a href="#0">18-21hrs</a></p>
                    </div>
                    <p class="slider--item-title">Horários disponíveis</p>
                    <p class="slider--item-description">Clique em algum dos horários disponíveis para agendar.</p>
                   </li>
                   <li class="slider--item slider--item-right">
                    <div class="slider--item-image">
-                     <p><a href="#0">12-13hrs</a></p>
-                     <p><a href="#0">13-14hrs</a></p>
-                     <p><a href="#0">22-23hrs</a></p>
                    </div>
                    <p class="slider--item-title">Horários bloqueados</p>
                    <p class="slider--item-description">Clique para saber o motivo.</p>
@@ -130,7 +118,7 @@
               </div>
 
 			  <div class="schedule-toggle hide">
-				<table>
+				<table id="week-schedule">
 					<thead>
 				        <tr>
 							<th>Seg</th>
@@ -143,12 +131,116 @@
 					</thead>
 				    <tbody>
 						<tr>
-						    <td>-</td>
-						    <td>-</td>
-						    <td>-</td>
-						    <td>-</td>
-						    <td>-</td>
-						    <td>-</td>
+						    <td class="filled">08-09hrs</td>
+						    <td class="not-filled">08-09hrs</td>
+						    <td class="not-filled">08-09hrs</td>
+						    <td class="filled">08-09hrs</td>
+						    <td class="not-filled">08-09hrs</td>
+						    <td class="not-filled">08-09hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">09-10hrs</td>
+						    <td class="filled">09-10hrs</td>
+						    <td class="not-filled">09-10hrs</td>
+						    <td class="not-filled">09-10hrs</td>
+						    <td class="not-filled">09-10hrs</td>
+						    <td class="not-filled">09-10hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">10-11hrs</td>
+						    <td class="not-filled">10-11hrs</td>
+						    <td class="not-filled">10-11hrs</td>
+						    <td class="not-filled">10-11hrs</td>
+						    <td class="filled">10-11hrs</td>
+						    <td class="not-filled">10-11hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">11-12hrs</td>
+						    <td class="not-filled">11-12hrs</td>
+						    <td class="not-filled">11-12hrs</td>
+						    <td class="not-filled">11-12hrs</td>
+						    <td class="not-filled">11-12hrs</td>
+						    <td class="filled">11-12hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">12-13hrs</td>
+						    <td class="not-filled">12-13hrs</td>
+						    <td class="not-filled">12-13hrs</td>
+						    <td class="not-filled">12-13hrs</td>
+						    <td class="filled">12-13hrs</td>
+						    <td class="not-filled">12-13hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">13-14hrs</td>
+						    <td class="not-filled">13-14hrs</td>
+						    <td class="not-filled">13-14hrs</td>
+						    <td class="not-filled">13-14hrs</td>
+						    <td class="filled">13-14hrs</td>
+						    <td class="not-filled">13-14hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">14-15hrs</td>
+						    <td class="not-filled">14-15hrs</td>
+						    <td class="not-filled">14-15hrs</td>
+						    <td class="not-filled">14-15hrs</td>
+						    <td class="filled">14-15hrs</td>
+						    <td class="not-filled">14-15hrs</td>
+						</tr>
+						<tr>
+						    <td class="not-filled">15-16hrs</td>
+						    <td class="filled">15-16hrs</td>
+						    <td class="not-filled">15-16hrs</td>
+						    <td class="not-filled">15-16hrs</td>
+						    <td class="filled">15-16hrs</td>
+						    <td class="not-filled">15-16hrs</td>
+						</tr>
+						<tr>
+						    <td class="not-filled">16-17hrs</td>
+						    <td class="not-filled">16-17hrs</td>
+						    <td class="not-filled">16-17hrs</td>
+						    <td class="filled">16-17hrs</td>
+						    <td class="filled">16-17hrs</td>
+						    <td class="not-filled">16-17hrs</td>
+						</tr>
+						<tr>
+						    <td class="not-filled">17-18hrs</td>
+						    <td class="not-filled">17-18hrs</td>
+						    <td class="not-filled">17-18hrs</td>
+						    <td class="not-filled">17-18hrs</td>
+						    <td class="filled">17-18hrs</td>
+						    <td class="filled">17-18hrs</td>
+						</tr>
+						<tr>
+						    <td class="not-filled">18-19hrs</td>
+						    <td class="not-filled">18-19hrs</td>
+						    <td class="not-filled">18-19hrs</td>
+						    <td class="not-filled">18-19hrs</td>
+						    <td class="not-filled">18-19hrs</td>
+						    <td class="not-filled">18-19hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">19-20hrs</td>
+						    <td class="not-filled">19-20hrs</td>
+						    <td class="not-filled">19-20hrs</td>
+						    <td class="not-filled">19-20hrs</td>
+						    <td class="filled">19-20hrs</td>
+						    <td class="not-filled">19-20hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">20-21hrs</td>
+						    <td class="filled">20-21hrs</td>
+						    <td class="filled">20-21hrs</td>
+						    <td class="filled">20-21hrs</td>
+						    <td class="filled">20-21hrs</td>
+						    <td class="not-filled">20-21hrs</td>
+						</tr>
+						<tr>
+						    <td class="filled">21-22hrs</td>
+						    <td class="not-filled">21-22hrs</td>
+						    <td class="not-filled">21-22hrs</td>
+						    <td class="not-filled">21-22hrs</td>
+						    <td class="filled">21-22hrs</td>
+						    <td class="not-filled">21-22hrs</td>
 						</tr>
 				    </tbody>
 				</table>
@@ -157,7 +249,7 @@
           </li>
           <li class="l-section section">
 				<div class="hire">
-					<h2>Cadastro de clientes</h2>
+					<h2>Cadastro de pacientes</h2>
 
 					<div id="customer-list" class="hide">
 						<table id="customer">
@@ -196,7 +288,7 @@
 
 					</form>
 					<p>
-					  <a id="see-customer-list" href="#"><span>ver clientes cadastrados</span><span class="hide">ver cadastro de clientes</span></a>
+					  <a id="see-customer-list" href="#"><span>ver pacientes cadastrados</span><span class="hide">ver pacientes de clientes</span></a>
 					</p>
 				</div> <!--.hire-->
 
@@ -209,7 +301,7 @@
   <ul class="outer-nav">
     <li class="is-active">Início</li>
     <li>Agenda</li>
-    <li>Clientes</li>
+    <li>Pacientes</li>
   </ul>
 </div>
 
