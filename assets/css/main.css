@@ -2,28 +2,28 @@
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Black.eot");
-  src: local("âº"), url("fonts/Montserrat-Black.woff") format("woff"), url("fonts/Montserrat-Black.ttf") format("truetype"), url("fonts/Montserrat-Black.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Black.woff") format("woff"), url("fonts/Montserrat-Black.ttf") format("truetype"), url("fonts/Montserrat-Black.svg") format("svg");
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Bold.eot");
-  src: local("âº"), url("fonts/Montserrat-Bold.woff") format("woff"), url("fonts/Montserrat-Bold.ttf") format("truetype"), url("fonts/Montserrat-Bold.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Bold.woff") format("woff"), url("fonts/Montserrat-Bold.ttf") format("truetype"), url("fonts/Montserrat-Bold.svg") format("svg");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Regular.eot");
-  src: local("âº"), url("fonts/Montserrat-Regular.woff") format("woff"), url("fonts/Montserrat-Regular.ttf") format("truetype"), url("fonts/Montserrat-Regular.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Regular.woff") format("woff"), url("fonts/Montserrat-Regular.ttf") format("truetype"), url("fonts/Montserrat-Regular.svg") format("svg");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Light.eot");
-  src: local("âº"), url("fonts/Montserrat-Light.woff") format("woff"), url("fonts/Montserrat-Light.ttf") format("truetype"), url("fonts/Montserrat-Light.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Light.woff") format("woff"), url("fonts/Montserrat-Light.ttf") format("truetype"), url("fonts/Montserrat-Light.svg") format("svg");
   font-weight: 300;
   font-style: normal;
 }
@@ -866,6 +866,29 @@ table {
   }
 }
 /* line 1, modules/_work.sass */
+#week-schedule {
+  border: 1px solid #ccc;
+}
+/* line 4, modules/_work.sass */
+#week-schedule th, #week-schedule td {
+  border: 1px solid #ccc;
+}
+/* line 7, modules/_work.sass */
+#week-schedule th {
+  padding: 5px;
+}
+/* line 10, modules/_work.sass */
+#week-schedule .filled {
+  background-color: #ccc;
+  color: #333;
+}
+/* line 14, modules/_work.sass */
+#week-schedule .not-filled {
+  background-color: #fff;
+  color: #000;
+}
+
+/* line 18, modules/_work.sass */
 .work {
   position: relative;
   display: flex;
@@ -878,22 +901,27 @@ table {
   line-height: 1.2;
 }
 @media (max-width: 1180px) {
-  /* line 1, modules/_work.sass */
+  /* line 18, modules/_work.sass */
   .work {
     max-width: 100%;
   }
 }
-/* line 15, modules/_work.sass */
+/* line 32, modules/_work.sass */
 .work h2 {
   margin: 0 0 10px 0;
   font-size: 30px;
   text-align: center;
 }
-/* line 20, modules/_work.sass */
+/* line 37, modules/_work.sass */
+.work h2 a {
+  color: #3B8686;
+  text-decoration: none;
+}
+/* line 41, modules/_work.sass */
 .work--lockup {
   position: relative;
 }
-/* line 23, modules/_work.sass */
+/* line 44, modules/_work.sass */
 .work--lockup .slider {
   position: relative;
   display: flex;
@@ -902,75 +930,75 @@ table {
   padding: 0;
   list-style: none;
 }
-/* line 31, modules/_work.sass */
+/* line 52, modules/_work.sass */
 .work--lockup .slider--item {
   position: absolute;
   display: none;
   text-align: center;
 }
-/* line 36, modules/_work.sass */
+/* line 57, modules/_work.sass */
 .work--lockup .slider--item a {
   text-decoration: none;
   color: #858585;
 }
-/* line 40, modules/_work.sass */
+/* line 61, modules/_work.sass */
 .work--lockup .slider--item-title {
   margin-top: 10px;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
 }
-/* line 46, modules/_work.sass */
+/* line 67, modules/_work.sass */
 .work--lockup .slider--item-description {
   max-width: 250px;
   margin: 0 auto;
 }
-/* line 50, modules/_work.sass */
+/* line 71, modules/_work.sass */
 .work--lockup .slider--item-image {
   width: 150px;
   margin: 0 auto;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 56, modules/_work.sass */
+/* line 77, modules/_work.sass */
 .work--lockup .slider--item-image img {
   width: 100%;
 }
-/* line 59, modules/_work.sass */
+/* line 80, modules/_work.sass */
 .work--lockup .slider--item-left {
   left: 0;
   display: block;
 }
-/* line 63, modules/_work.sass */
+/* line 84, modules/_work.sass */
 .work--lockup .slider--item-right {
   right: 0;
   display: block;
 }
-/* line 67, modules/_work.sass */
+/* line 88, modules/_work.sass */
 .work--lockup .slider--item-center {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   display: block;
 }
-/* line 73, modules/_work.sass */
+/* line 94, modules/_work.sass */
 .work--lockup .slider--item-center a {
   color: #fff;
 }
-/* line 76, modules/_work.sass */
+/* line 97, modules/_work.sass */
 .work--lockup .slider--item-center .slider--item-title {
   margin-top: 25px;
   font-size: 16px;
 }
-/* line 80, modules/_work.sass */
+/* line 101, modules/_work.sass */
 .work--lockup .slider--item-center .slider--item-description {
   display: block;
 }
-/* line 83, modules/_work.sass */
+/* line 104, modules/_work.sass */
 .work--lockup .slider--item-center .slider--item-image {
   width: 300px;
 }
-/* line 86, modules/_work.sass */
+/* line 107, modules/_work.sass */
 .work--lockup .slider--next,
 .work--lockup .slider--prev {
   position: absolute;
@@ -985,65 +1013,65 @@ table {
   cursor: pointer;
   display: none;
 }
-/* line 100, modules/_work.sass */
+/* line 121, modules/_work.sass */
 .work--lockup .slider--next svg,
 .work--lockup .slider--prev svg {
   width: 20px;
   fill: #fff;
 }
-/* line 104, modules/_work.sass */
+/* line 125, modules/_work.sass */
 .work--lockup .slider--next {
   right: 0;
 }
-/* line 107, modules/_work.sass */
+/* line 128, modules/_work.sass */
 .work--lockup .slider--prev {
   left: 0;
 }
 
 @media (max-width: 900px) {
-  /* line 120, modules/_work.sass */
+  /* line 141, modules/_work.sass */
   .work--lockup .slider--item-image {
     width: 120px;
     height: 120px;
   }
-  /* line 126, modules/_work.sass */
+  /* line 147, modules/_work.sass */
   .work--lockup .slider--item-center .slider--item-image {
     width: 240px;
     height: 240px;
   }
-  /* line 130, modules/_work.sass */
+  /* line 151, modules/_work.sass */
   .work--lockup .slider--next,
   .work--lockup .slider--prev {
     top: 130px;
   }
 }
 @media (max-width: 767px) {
-  /* line 140, modules/_work.sass */
+  /* line 161, modules/_work.sass */
   .work--lockup .slider {
     width: 75%;
   }
-  /* line 145, modules/_work.sass */
+  /* line 166, modules/_work.sass */
   .work--lockup .slider--item-image {
     width: 90px;
     height: 90px;
   }
-  /* line 151, modules/_work.sass */
+  /* line 172, modules/_work.sass */
   .work--lockup .slider--item-center .slider--item-image {
     width: 190px;
     height: 190px;
   }
-  /* line 155, modules/_work.sass */
+  /* line 176, modules/_work.sass */
   .work--lockup .slider--next,
   .work--lockup .slider--prev {
     top: 105px;
   }
 }
 @media (max-width: 600px) {
-  /* line 165, modules/_work.sass */
+  /* line 186, modules/_work.sass */
   .work--lockup .slider {
     width: auto;
   }
-  /* line 170, modules/_work.sass */
+  /* line 191, modules/_work.sass */
   .work--lockup .slider--item-left, .work--lockup .slider--item-right {
     display: none;
   }
