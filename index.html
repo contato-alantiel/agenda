@@ -81,30 +81,18 @@
                 <ul class="slider">
                   <li class="slider--item slider--item-left">
                    <div class="slider--item-image" id="scheduledTime">
-                     <p><a href="#0">08-09hrs</a></p>
-                     <p><a href="#0">09-10hrs</a></p>
-                     <p><a href="#0">14-15hrs</a></p>
-                     <p><a href="#0">15-16hrs</a></p>
-                     <p><a href="#0">16-17hrs</a></p>
-                     <p><a href="#0">17-18hrs</a></p>
                    </div>
                    <p class="slider--item-title">Horários ocupados</p>
                    <p class="slider--item-description">Clique em algum deles para ver detalhes.</p>
                   </li>
                   <li class="slider--item slider--item-center">
                    <div class="slider--item-image" id="freeTime">
-                     <p><a href="#0">06-07hrs</a></p>
-                     <p><a href="#0">10-12hrs</a></p>
-                     <p><a href="#0">18-21hrs</a></p>
                    </div>
                    <p class="slider--item-title">Horários disponíveis</p>
                    <p class="slider--item-description">Clique em algum dos horários disponíveis para agendar.</p>
                   </li>
                   <li class="slider--item slider--item-right">
-                   <div class="slider--item-image">
-                     <p><a href="#0">12-13hrs</a></p>
-                     <p><a href="#0">13-14hrs</a></p>
-                     <p><a href="#0">22-23hrs</a></p>
+                   <div class="slider--item-image" id="blockedTime">
                    </div>
                    <p class="slider--item-title">Horários bloqueados</p>
                    <p class="slider--item-description">Clique para saber o motivo.</p>
@@ -213,8 +201,26 @@
   </ul>
 </div>
 
-<div id="dialog" title="Aviso">
+<div id="dialog-scheduled" title="Aviso">
   <p>Hi!</p>
+</div>
+
+<div id="dialog-free" title="Confirmação de agendamento">
+  <p>
+	Horário do agendamento: <strong class="confirm-time"></strong> <br>
+	<label>Selecione o paciente para esse horário: </label> <br>
+	<select id="combobox">
+		<option value="">Selecione o paciente...</option>
+	</select>
+  </p>
+</div>
+
+<div id="dialog-blocked" title="Informações">
+  <p>
+	Horário bloqueado: <strong class="confirm-time"></strong> <br>
+	Motivo do bloqueio: <strong class="block-reason"></strong> <br>
+	Deseja desbloquear esse horário?
+  </p>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

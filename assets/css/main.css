@@ -1049,6 +1049,27 @@ table {
   }
 }
 /* line 1, modules/_hire.sass */
+.custom-combobox {
+  position: relative;
+  display: inline-block;
+}
+
+/* line 5, modules/_hire.sass */
+.custom-combobox-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-left: -1px;
+  padding: 0;
+}
+
+/* line 12, modules/_hire.sass */
+.custom-combobox-input {
+  margin: 0;
+  padding: 5px 10px;
+}
+
+/* line 16, modules/_hire.sass */
 .hire {
   position: relative;
   display: flex;
@@ -1060,25 +1081,25 @@ table {
   margin: 0 auto;
 }
 @media (max-width: 1180px) {
-  /* line 1, modules/_hire.sass */
+  /* line 16, modules/_hire.sass */
   .hire {
     max-width: 100%;
   }
 }
-/* line 14, modules/_hire.sass */
+/* line 29, modules/_hire.sass */
 .hire h2 {
   margin: 0 0 20px 0;
   font-size: 30px;
   text-align: center;
 }
 
-/* line 19, modules/_hire.sass */
+/* line 34, modules/_hire.sass */
 .work-request {
   width: 100%;
   align-items: center;
   color: #fff;
 }
-/* line 24, modules/_hire.sass */
+/* line 39, modules/_hire.sass */
 .work-request input[type="submit"] {
   width: 400px;
   max-width: 100%;
@@ -1090,11 +1111,11 @@ table {
   border: none;
   border-radius: 0;
 }
-/* line 35, modules/_hire.sass */
+/* line 50, modules/_hire.sass */
 .work-request input[type="submit"]:focus {
   outline: none;
 }
-/* line 38, modules/_hire.sass */
+/* line 53, modules/_hire.sass */
 .work-request--options {
   display: flex;
   width: 100%;
@@ -1102,20 +1123,20 @@ table {
   align-items: center;
   margin: 30px 0;
 }
-/* line 45, modules/_hire.sass */
+/* line 60, modules/_hire.sass */
 .work-request--options .options-a {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-/* line 50, modules/_hire.sass */
+/* line 65, modules/_hire.sass */
 .work-request--options .options-b {
   display: flex;
   width: 72%;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 56, modules/_hire.sass */
+/* line 71, modules/_hire.sass */
 .work-request--options label {
   display: block;
   width: 200px;
@@ -1128,7 +1149,7 @@ table {
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
-/* line 68, modules/_hire.sass */
+/* line 83, modules/_hire.sass */
 .work-request--options label svg {
   position: relative;
   left: -5px;
@@ -1136,26 +1157,26 @@ table {
   fill: #fff;
   transition: width 0.2s ease-in-out;
 }
-/* line 75, modules/_hire.sass */
+/* line 90, modules/_hire.sass */
 .work-request--options input[type="checkbox"] {
   display: none;
 }
-/* line 78, modules/_hire.sass */
+/* line 93, modules/_hire.sass */
 .work-request--options input[type="checkbox"]:checked + label {
   background-color: #0f33ff;
   border-color: #0f33ff;
 }
-/* line 82, modules/_hire.sass */
+/* line 97, modules/_hire.sass */
 .work-request--options input[type="checkbox"]:checked + label svg {
   width: 15px;
 }
-/* line 85, modules/_hire.sass */
+/* line 100, modules/_hire.sass */
 .work-request--information {
   width: 100%;
   justify-content: space-between;
   margin-bottom: 60px;
 }
-/* line 90, modules/_hire.sass */
+/* line 105, modules/_hire.sass */
 .work-request--information .information-name,
 .work-request--information .information-email {
   position: relative;
@@ -1164,22 +1185,22 @@ table {
   font-size: 30px;
   font-weight: 300;
 }
-/* line 99, modules/_hire.sass */
+/* line 114, modules/_hire.sass */
 .work-request--information .information-report {
   width: 100%;
   position: relative;
 }
-/* line 103, modules/_hire.sass */
+/* line 118, modules/_hire.sass */
 .work-request--information .information-report label {
   font-size: 22px;
 }
-/* line 106, modules/_hire.sass */
+/* line 121, modules/_hire.sass */
 .work-request--information .information-report textarea {
   width: 100%;
   margin-top: 35px;
   color: #666;
 }
-/* line 111, modules/_hire.sass */
+/* line 126, modules/_hire.sass */
 .work-request--information input[type="text"],
 .work-request--information input[type="email"] {
   width: 100%;
@@ -1189,13 +1210,13 @@ table {
   border-bottom: 1px solid #fff;
   border-radius: 0;
 }
-/* line 120, modules/_hire.sass */
+/* line 135, modules/_hire.sass */
 .work-request--information input[type="text"]:focus,
 .work-request--information input[type="email"]:focus {
   outline: none;
   background-color: #0c0c0c;
 }
-/* line 124, modules/_hire.sass */
+/* line 139, modules/_hire.sass */
 .work-request--information label {
   position: absolute;
   top: 0;
@@ -1203,7 +1224,7 @@ table {
   pointer-events: none;
   transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
 }
-/* line 131, modules/_hire.sass */
+/* line 146, modules/_hire.sass */
 .work-request--information input:focus + label,
 .work-request--information input.has-value + label {
   top: -5px;
@@ -1211,12 +1232,12 @@ table {
 }
 
 @media (max-width: 767px) {
-  /* line 140, modules/_hire.sass */
+  /* line 155, modules/_hire.sass */
   .work-request--options {
     flex-direction: row;
     justify-content: space-around;
   }
-  /* line 144, modules/_hire.sass */
+  /* line 159, modules/_hire.sass */
   .work-request--options .options-a,
   .work-request--options .options-b {
     display: block;
@@ -1224,33 +1245,33 @@ table {
   }
 }
 @media (max-width: 600px) {
-  /* line 153, modules/_hire.sass */
+  /* line 168, modules/_hire.sass */
   .work-request--options {
     margin: 20px 0;
   }
 }
 @media (max-width: 600px) and (max-width: 415px) {
-  /* line 153, modules/_hire.sass */
+  /* line 168, modules/_hire.sass */
   .work-request--options {
     justify-content: space-between;
   }
 }
 @media (max-width: 600px) {
-  /* line 159, modules/_hire.sass */
+  /* line 174, modules/_hire.sass */
   .work-request--options label {
     width: 150px;
     margin-bottom: 15px;
     font-size: 14px;
   }
-  /* line 168, modules/_hire.sass */
+  /* line 183, modules/_hire.sass */
   .work-request--options input[type="checkbox"]:checked + label svg {
     width: 12px;
   }
-  /* line 171, modules/_hire.sass */
+  /* line 186, modules/_hire.sass */
   .work-request--information {
     margin-bottom: 30px;
   }
-  /* line 174, modules/_hire.sass */
+  /* line 189, modules/_hire.sass */
   .work-request--information .information-name,
   .work-request--information .information-email {
     height: 40px;

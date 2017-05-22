@@ -1,45 +1,27 @@
 $( document ).ready(function() {
-	var key = null;
-	// Simply open the database once so that it is created with the required tables
-	$.indexedDB("RodrigoFisio", {
-		"schema": {
-			"1": function(versionTransaction){
-				var customer = versionTransaction.createObjectStore("customer", {
-					"keyPath": "customerId"
-				});
-				
-			},
-			"2": function(versionTransaction){
-				versionTransaction.objectStore("customer").createIndex("customerId");
-				versionTransaction.objectStore("customer").createIndex("customerEmail");
-			}
-		}
-	});
+
+	 window.setTimeout(function(){
+		loadCustomers();
+	 }, 400);
 
 
-	//loading customer
-	window.setTimeout(function(){
-		//emptyDB("customer");
-		loadFromDB("customer");
-	}, 200);
+     function loadCustomers(){
+		var objectStore = db.transaction("customer").objectStore("customer");
+		emptyCustomerTable();
+  
+        objectStore.openCursor().onsuccess = function(event) {
+		    var cursor = event.target.result;
+		    if (cursor) {
+				addRowInHTMLTable("customer", cursor.key, cursor.value);
+		        cursor.continue();
+		    }
+        }; 
+     }
 
-	// Iterate over each record in a table and display it
-   function loadFromDB(table){
-		emptyTable(table);
-		_($.indexedDB("RodrigoFisio").objectStore(table).each(function(elem){
-			console.log("customer:" + elem);
-			addRowInHTMLTable(table, elem.key, elem.value);
-		}));
-   }
 
-	function emptyDB(table){
-		_($.indexedDB("RodrigoFisio").objectStore(table).clear());
-	}
-
-	function emptyTable(tableName){
-		var table = document.getElementById(tableName);
-		table.getElementsByTagName("tbody")[0].innerHTML = "";
-	}
+	 function emptyCustomerTable(){
+		$("#customer tbody").html("");
+	 }
 
 	function addRowInHTMLTable(tableName, key, values){
 		var actions = {
@@ -52,7 +34,7 @@ $( document ).ready(function() {
 	   	var row = document.createElement("tr");
    		var html = ["<tr>"];
 
-		html = html.concat([renderTD(values, 'customerId')]);
+		html = html.concat([renderTD(values, 'id')]);
 		html = html.concat([renderTD(values, 'customerName')]);
 		html = html.concat([renderTD(values, 'customerEmail')]);
 
@@ -76,46 +58,32 @@ $( document ).ready(function() {
 	}
 
 	function addToCustomer(customerOBJ){
+
+		var request = db.transaction(["customer"], "readwrite")
+                .objectStore("customer")
+                .add(customerOBJ);
+                                 
+        request.onsuccess = function(event) {
+                alert("Paciente adicionado com sucesso");
+				$("form:visible")[0].reset();
+				loadCustomers();
+        };
+         
+        request.onerror = function(event) {
+                alert("Ocorreu algum erro! ");       
+        }
+
 		console.log(customerOBJ);
-		
-		var transaction = $.indexedDB("RodrigoFisio").transaction(['customer'], 'readwrite');
-
-		transaction.done(function(){
-			loadFromDB("customer");
-		});
-
-		transaction.progress(function(transaction){
-			transaction.objectStore("customer").count().then(function(result) {
-				console.log("Transaction OK here");
-				customerOBJ['customerId'] = result+1;
-
-				transaction.objectStore("customer").add(customerOBJ).fail(function(e){
-					alert('Ocorreu algum erro, por favor verifique os campos e tente novamente...');
-					console.log(e);
-				}).done(function(){
-					alert('Cliente salvo com sucesso.');
-					$("form:visible")[0].reset()
-					console.log("finishing");
-				});
-			});
-   			
-		});
 	}
    
 	function removeFromCustomer(itemId){
-		$.indexedDB("RodrigoFisio").objectStore("customer")["delete"](itemId).done(function(){
-			loadFromDB("customer");
-		});
-	}
-
-	function _(promise){
-			promise.then(function(a, e){
-   			console.log("Action completed", e.type, a, e);
-		}, function(a, e){
-   			console.log("Action completed", a, e);
-		}, function(a, e){
-			console.log("Action completed", a, e);
-		})
+		var request = db.transaction(["customer"], "readwrite")
+                .objectStore("customer")
+                .delete(itemId);
+        request.onsuccess = function(event) {
+          alert("Paciente removido com sucesso!");
+		  loadCustomers();
+        };
 	}
 
 	/*Add Customer*/
