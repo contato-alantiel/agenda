@@ -297,7 +297,30 @@
 			</li>
         </ul>
       </div>
+	  <div id="dialog-scheduled" title="Aviso">
+		  <p>Hi!</p>
+		</div>
+
+		<div id="dialog-free" title="Confirmação de agendamento">
+		  <p>
+			Horário do agendamento: <strong class="confirm-time"></strong> <br>
+			<label>Selecione o paciente para esse horário: </label> <br>
+			<select id="combobox">
+				<option value="">Selecione o paciente...</option>
+			</select>
+		  </p>
+		</div>
+
+		<div id="dialog-blocked" title="Informações">
+		  <p>
+			Horário bloqueado: <strong class="confirm-time"></strong> <br>
+			Motivo do bloqueio: <strong class="block-reason"></strong> <br>
+			Deseja desbloquear esse horário?
+		  </p>
+		</div>
     </div>
+
+
   </div>
   <ul class="outer-nav">
     <li class="is-active">Início</li>
@@ -306,35 +329,12 @@
   </ul>
 </div>
 
-<div id="dialog-scheduled" title="Aviso">
-  <p>Hi!</p>
-</div>
 
-<div id="dialog-free" title="Confirmação de agendamento">
-  <p>
-	Horário do agendamento: <strong class="confirm-time"></strong> <br>
-	<label>Selecione o paciente para esse horário: </label> <br>
-	<select id="combobox">
-		<option value="">Selecione o paciente...</option>
-	</select>
-  </p>
-</div>
-
-<div id="dialog-blocked" title="Informações">
-  <p>
-	Horário bloqueado: <strong class="confirm-time"></strong> <br>
-	Motivo do bloqueio: <strong class="block-reason"></strong> <br>
-	Deseja desbloquear esse horário?
-  </p>
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 
 <script type = "text/javascript" src = "assets/js/vendor/jquery-ui.min.js"></script>
-
-<script type = "text/javascript" src = "assets/js/indexeddbshim.min.js"></script>
-<script type = "text/javascript" src="assets/js/jquery.indexeddb.min.js"></script>
 
 <script src="assets/js/functions-min.js"></script>
 <script src="assets/js/loader.js"></script>
