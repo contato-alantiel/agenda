@@ -2,6 +2,7 @@ $( document ).ready(function() {
 
 	window.setTimeout(function(){
 		comboboxUI();
+		scheculerSlider();
 
 		// TODO retirar
 		emptyDB("scheduledTime");
@@ -10,48 +11,25 @@ $( document ).ready(function() {
 		var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
 		//console.log(prefixNow);
 
+		var d_1 = (function(){this.setDate(this.getDate()-1); return this}).call(new Date)
+		var d_2 = (function(){this.setDate(this.getDate()-2); return this}).call(new Date)
+		var d1 = (function(){this.setDate(this.getDate()+1); return this}).call(new Date)
+
+		var prefixD_1 = d_1.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
+		var prefixD_2 = d_2.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
+		var prefixD1 = d1.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
+
 		//past
 		var obj = {'id': '2017050104', 'date': "20170501", 'time': '04-05', 'customer': $("#combobox").val()};
 		addToScheduledTime(obj);
 
-		obj = {'date': prefixNow+'09', 'time': '09-10', 'customer': 1};
-		addToScheduledTime(obj);
-		obj = {'date': prefixNow+'08', 'time': '08-09', 'customer': 2};
-		addToScheduledTime(obj);
+		fillSample(prefixNow);
+		fillSample(prefixD_1);
+		fillSample(prefixD_2);
+		fillSample(prefixD1);
 
-		obj = {'date': prefixNow+'06', 'time': '06-07'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'07', 'time': '07-08'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'11', 'time': '11-12'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'14', 'time': '14-15'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'15', 'time': '15-16'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'16', 'time': '16-17'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'17', 'time': '17-18'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'18', 'time': '18-19'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'19', 'time': '19-20'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'21', 'time': '21-22'};
-		addToFreeTime(obj);
-		obj = {'date': prefixNow+'20', 'time': '20-21'};
-		addToFreeTime(obj);
-
-		obj = {'date': prefixNow+'12', 'time': '12-13', 'reason': 'Almoço'};
-		addToBlockedTime(obj);
-		obj = {'date': prefixNow+'13', 'time': '13-14', 'reason': 'Almoço + levando cachorro para passear'};
-		addToBlockedTime(obj);
-		obj = {'date': prefixNow+'22', 'time': '22-23', 'reason': 'Problema é meu'};
-		addToBlockedTime(obj);
-
-		loadFromDB("scheduledTime", prefixNow);
-		loadFromDB("freeTime", prefixNow);
-		loadFromDB("blockedTime", prefixNow);
+		loadDaySchedule(prefixNow);
+		loadWeekSchedule(prefixNow);
 	}, 400);
 
 	function loadCustomers() {
@@ -66,6 +44,34 @@ $( document ).ready(function() {
 		        cursor.continue();
 		    }
         };
+	}
+
+	function loadDaySchedule(prefix) {
+		console.log(prefix);
+		
+		$(".schedule-day .period-schedule").data("prefix", prefix).text("Data: " + prefix.slice(6, 8) + "/" + prefix.slice(4, 6) + "/" + prefix.slice(0,4));
+		loadFromDB("scheduledTime", prefix);
+		loadFromDB("freeTime", prefix);
+		loadFromDB("blockedTime", prefix);
+	}
+
+	function loadWeekSchedule(prefix) {
+		function getMonday(d) {
+		  d = new Date(d);
+		  var day = d.getDay(),
+				diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+		  return new Date(d.setDate(diff));
+		}
+
+		var d = new Date(prefix.slice(0,4), parseInt(prefix.slice(4, 6))-1, parseInt(prefix.slice(6, 8)) );
+
+		var firstDay = getMonday(d);
+		var lastDay = new Date(firstDay.getTime());
+		lastDay.setDate(firstDay.getDate() + 5);
+
+		var prefixStart = firstDay.toISOString().slice(0,10).replace(/-/g,"");
+		var prefixEnd = lastDay.toISOString().slice(0,10).replace(/-/g,"");
+		$(".schedule-week .period-schedule").data("prefix", prefixStart).text("Semana: " + prefixStart.slice(6, 8) + "/" + prefixStart.slice(4, 6) + "/" + prefixStart.slice(0,4) + " - " + prefixEnd.slice(6, 8) + "/" + prefixEnd.slice(4, 6) + "/" + prefixEnd.slice(0,4));
 	}
 
 	function emptyDB(table){
@@ -263,6 +269,101 @@ $( document ).ready(function() {
                 alert("Ocorreu algum erro! ");       
         }
 	}
+
+	function fillSample(prefix) {
+		if( (prefix % 2) == 0 ) {
+			obj = {'date': prefix+'09', 'time': '09-10', 'customer': 1};
+			addToScheduledTime(obj);
+			console.log("par " + prefix);
+		} else {
+			obj = {'date': prefix+'09', 'time': '09-10'};
+			addToFreeTime(obj);
+			console.log("impar " + prefix);
+		}
+
+
+		obj = {'date': prefix+'08', 'time': '08-09', 'customer': 2};
+		addToScheduledTime(obj);
+
+		obj = {'date': prefix+'06', 'time': '06-07'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'07', 'time': '07-08'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'11', 'time': '11-12'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'14', 'time': '14-15'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'15', 'time': '15-16'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'16', 'time': '16-17'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'17', 'time': '17-18'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'18', 'time': '18-19'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'19', 'time': '19-20'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'21', 'time': '21-22'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'20', 'time': '20-21'};
+		addToFreeTime(obj);
+
+		obj = {'date': prefix+'12', 'time': '12-13', 'reason': 'Almoço'};
+		addToBlockedTime(obj);
+		obj = {'date': prefix+'13', 'time': '13-14', 'reason': 'Almoço + levando cachorro para passear '};
+		addToBlockedTime(obj);
+
+		if( (prefix % 2) == 0 ) {
+			obj = {'date': prefix+'22', 'time': '22-23', 'reason': 'Problema é meu'};
+			addToBlockedTime(obj);
+		}
+		else {
+			obj = {'date': prefix+'22', 'time': '22-23'};
+			addToFreeTime(obj);
+		}
+	}
+
+	function scheculerSlider() {
+		$('.slider--prev, .slider--next', $(".schedule-day")).click(function(e) {
+			var objThis = $(e.target);
+			var increment = 1;
+			if(objThis.is(".slider--prev") || objThis.parents(".slider--prev").length > 0) {
+				increment = -1;
+			}
+			var objPeriod = $(".period-schedule", $(".schedule-day"));
+			var prefix = String(objPeriod.data("prefix"));
+
+			var toDate = new Date(prefix.slice(0,4), parseInt(prefix.slice(4, 6))-1, parseInt(prefix.slice(6, 8)) + increment );
+
+			loadDaySchedule(toDate.toISOString().slice(0,10).replace(/-/g,""));
+		});
+
+		$('.slider--prev, .slider--next', $(".schedule-week")).click(function(e) {
+			var objThis = $(e.target);
+			var increment = 7;
+			if(objThis.is(".slider--prev") || objThis.parents(".slider--prev").length > 0) {
+				increment = -7;
+			}
+			var objPeriod = $(".period-schedule", $(".schedule-week"));
+			var prefix = String(objPeriod.data("prefix"));
+
+			var toDate = new Date(prefix.slice(0,4), parseInt(prefix.slice(4, 6))-1, parseInt(prefix.slice(6, 8)) + increment );
+
+			loadWeekSchedule(toDate.toISOString().slice(0,10).replace(/-/g,""));
+		});
+	}
+
+	/*See schedule daily/weekly*/
+	$('.schedule-toggle-link').click(function (e) {
+		  e.stopPropagation();
+		  e.preventDefault();
+
+		  var objThis = $(e.target);
+		  if(objThis.is(".active")) return;
+		
+		  $(".schedule-toggle-link").toggleClass("active");
+		  $(".schedule-toggle").toggleClass("hide");
+	});
 
 	function comboboxUI() {
 		loadCustomers();

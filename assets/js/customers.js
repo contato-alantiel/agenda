@@ -114,17 +114,4 @@ $( document ).ready(function() {
 		  objThis.parent().find("span").toggleClass("hide");
 	});
 
-	/*See schedule daily/weekly*/
-	$('.schedule-toggle-link').click(function (e) {
-		  e.stopPropagation();
-		  e.preventDefault();
-
-		  var objThis = $(e.target);
-		  if(objThis.is(".active")) return;
-		
-		  $(".schedule-toggle-link").toggleClass("active");
-		  $(".schedule-toggle").toggleClass("hide");
-	});
-
-
 });

@@ -2,28 +2,28 @@
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Black.eot");
-  src: local("âº"), url("fonts/Montserrat-Black.woff") format("woff"), url("fonts/Montserrat-Black.ttf") format("truetype"), url("fonts/Montserrat-Black.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Black.woff") format("woff"), url("fonts/Montserrat-Black.ttf") format("truetype"), url("fonts/Montserrat-Black.svg") format("svg");
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Bold.eot");
-  src: local("âº"), url("fonts/Montserrat-Bold.woff") format("woff"), url("fonts/Montserrat-Bold.ttf") format("truetype"), url("fonts/Montserrat-Bold.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Bold.woff") format("woff"), url("fonts/Montserrat-Bold.ttf") format("truetype"), url("fonts/Montserrat-Bold.svg") format("svg");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Regular.eot");
-  src: local("âº"), url("fonts/Montserrat-Regular.woff") format("woff"), url("fonts/Montserrat-Regular.ttf") format("truetype"), url("fonts/Montserrat-Regular.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Regular.woff") format("woff"), url("fonts/Montserrat-Regular.ttf") format("truetype"), url("fonts/Montserrat-Regular.svg") format("svg");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url("fonts/Montserrat-Light.eot");
-  src: local("âº"), url("fonts/Montserrat-Light.woff") format("woff"), url("fonts/Montserrat-Light.ttf") format("truetype"), url("fonts/Montserrat-Light.svg") format("svg");
+  src: local("☺"), url("fonts/Montserrat-Light.woff") format("woff"), url("fonts/Montserrat-Light.ttf") format("truetype"), url("fonts/Montserrat-Light.svg") format("svg");
   font-weight: 300;
   font-style: normal;
 }
@@ -868,6 +868,8 @@ table {
 /* line 1, modules/_work.sass */
 #week-schedule {
   border: 1px solid #ccc;
+  width: 85%;
+  margin: 0 auto;
 }
 @media (max-width: 1180px) {
   /* line 1, modules/_work.sass */
@@ -875,26 +877,26 @@ table {
     font-size: 11px;
   }
 }
-/* line 7, modules/_work.sass */
+/* line 9, modules/_work.sass */
 #week-schedule th, #week-schedule td {
   border: 1px solid #ccc;
 }
-/* line 10, modules/_work.sass */
+/* line 12, modules/_work.sass */
 #week-schedule th {
   padding: 5px;
 }
-/* line 13, modules/_work.sass */
+/* line 15, modules/_work.sass */
 #week-schedule .filled {
   background-color: #ccc;
   color: #333;
 }
-/* line 17, modules/_work.sass */
+/* line 19, modules/_work.sass */
 #week-schedule .not-filled {
   background-color: #fff;
   color: #000;
 }
 
-/* line 21, modules/_work.sass */
+/* line 23, modules/_work.sass */
 .work {
   position: relative;
   display: flex;
@@ -907,33 +909,37 @@ table {
   line-height: 1.2;
 }
 @media (max-width: 1180px) {
-  /* line 21, modules/_work.sass */
+  /* line 23, modules/_work.sass */
   .work {
     max-width: 100%;
   }
 }
-/* line 35, modules/_work.sass */
+/* line 37, modules/_work.sass */
 .work h2 {
-  margin: 0 0 10px 0;
+  margin: 0;
   font-size: 30px;
   text-align: center;
 }
 @media (max-width: 1180px) {
-  /* line 35, modules/_work.sass */
+  /* line 37, modules/_work.sass */
   .work h2 {
     font-size: 25px;
   }
 }
-/* line 43, modules/_work.sass */
+/* line 45, modules/_work.sass */
 .work h2 a {
   color: #3B8686;
   text-decoration: none;
 }
-/* line 47, modules/_work.sass */
+/* line 49, modules/_work.sass */
+.work .period-schedule {
+  text-align: center;
+}
+/* line 52, modules/_work.sass */
 .work--lockup {
   position: relative;
 }
-/* line 50, modules/_work.sass */
+/* line 55, modules/_work.sass */
 .work--lockup .slider {
   position: relative;
   display: flex;
@@ -942,75 +948,75 @@ table {
   padding: 0;
   list-style: none;
 }
-/* line 58, modules/_work.sass */
+/* line 63, modules/_work.sass */
 .work--lockup .slider--item {
   position: absolute;
   display: none;
   text-align: center;
 }
-/* line 63, modules/_work.sass */
+/* line 68, modules/_work.sass */
 .work--lockup .slider--item a {
   text-decoration: none;
   color: #858585;
 }
-/* line 67, modules/_work.sass */
+/* line 72, modules/_work.sass */
 .work--lockup .slider--item-title {
   margin-top: 10px;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
 }
-/* line 73, modules/_work.sass */
+/* line 78, modules/_work.sass */
 .work--lockup .slider--item-description {
   max-width: 250px;
   margin: 0 auto;
 }
-/* line 77, modules/_work.sass */
+/* line 82, modules/_work.sass */
 .work--lockup .slider--item-image {
   width: 150px;
   margin: 0 auto;
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 83, modules/_work.sass */
+/* line 88, modules/_work.sass */
 .work--lockup .slider--item-image img {
   width: 100%;
 }
-/* line 86, modules/_work.sass */
+/* line 91, modules/_work.sass */
 .work--lockup .slider--item-left {
   left: 0;
   display: block;
 }
-/* line 90, modules/_work.sass */
+/* line 95, modules/_work.sass */
 .work--lockup .slider--item-right {
   right: 0;
   display: block;
 }
-/* line 94, modules/_work.sass */
+/* line 99, modules/_work.sass */
 .work--lockup .slider--item-center {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   display: block;
 }
-/* line 100, modules/_work.sass */
+/* line 105, modules/_work.sass */
 .work--lockup .slider--item-center a {
   color: #fff;
 }
-/* line 103, modules/_work.sass */
+/* line 108, modules/_work.sass */
 .work--lockup .slider--item-center .slider--item-title {
   margin-top: 25px;
   font-size: 16px;
 }
-/* line 107, modules/_work.sass */
+/* line 112, modules/_work.sass */
 .work--lockup .slider--item-center .slider--item-description {
   display: block;
 }
-/* line 110, modules/_work.sass */
+/* line 115, modules/_work.sass */
 .work--lockup .slider--item-center .slider--item-image {
   width: 300px;
 }
-/* line 113, modules/_work.sass */
+/* line 118, modules/_work.sass */
 .work--lockup .slider--next,
 .work--lockup .slider--prev {
   position: absolute;
@@ -1023,67 +1029,66 @@ table {
   background-color: #282828;
   border-radius: 50%;
   cursor: pointer;
-  display: none;
 }
-/* line 127, modules/_work.sass */
+/* line 131, modules/_work.sass */
 .work--lockup .slider--next svg,
 .work--lockup .slider--prev svg {
   width: 20px;
   fill: #fff;
 }
-/* line 131, modules/_work.sass */
+/* line 135, modules/_work.sass */
 .work--lockup .slider--next {
   right: 0;
 }
-/* line 134, modules/_work.sass */
+/* line 138, modules/_work.sass */
 .work--lockup .slider--prev {
   left: 0;
 }
 
 @media (max-width: 900px) {
-  /* line 147, modules/_work.sass */
+  /* line 151, modules/_work.sass */
   .work--lockup .slider--item-image {
     width: 120px;
     height: 120px;
   }
-  /* line 153, modules/_work.sass */
+  /* line 157, modules/_work.sass */
   .work--lockup .slider--item-center .slider--item-image {
     width: 240px;
     height: 240px;
   }
-  /* line 157, modules/_work.sass */
+  /* line 161, modules/_work.sass */
   .work--lockup .slider--next,
   .work--lockup .slider--prev {
     top: 130px;
   }
 }
 @media (max-width: 767px) {
-  /* line 167, modules/_work.sass */
+  /* line 171, modules/_work.sass */
   .work--lockup .slider {
     width: 75%;
   }
-  /* line 172, modules/_work.sass */
+  /* line 176, modules/_work.sass */
   .work--lockup .slider--item-image {
     width: 90px;
     height: 90px;
   }
-  /* line 178, modules/_work.sass */
+  /* line 182, modules/_work.sass */
   .work--lockup .slider--item-center .slider--item-image {
     width: 190px;
     height: 190px;
   }
-  /* line 182, modules/_work.sass */
+  /* line 186, modules/_work.sass */
   .work--lockup .slider--next,
   .work--lockup .slider--prev {
     top: 105px;
   }
 }
 @media (max-width: 600px) {
-  /* line 192, modules/_work.sass */
+  /* line 196, modules/_work.sass */
   .work--lockup .slider {
     width: auto;
   }
-  /* line 197, modules/_work.sass */
+  /* line 201, modules/_work.sass */
   .work--lockup .slider--item-left, .work--lockup .slider--item-right {
     display: none;
   }
