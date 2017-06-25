@@ -8,8 +8,9 @@ $( document ).ready(function() {
 		emptyDB("scheduledTime");
 		emptyDB("freeTime");
 		var d = new Date();
+		d.setHours(0);
 		var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
-		//console.log(prefixNow);
+		console.log(prefixNow, d.toISOString(), d);
 
 		var d_1 = (function(){this.setDate(this.getDate()-1); return this}).call(new Date)
 		var d_2 = (function(){this.setDate(this.getDate()-2); return this}).call(new Date)
@@ -24,9 +25,9 @@ $( document ).ready(function() {
 		addToScheduledTime(obj);
 
 		fillSample(prefixNow);
-		fillSample(prefixD_1);
-		fillSample(prefixD_2);
-		fillSample(prefixD1);
+		//fillSample(prefixD_1);
+		//fillSample(prefixD_2);
+		//fillSample(prefixD1);
 
 		loadDaySchedule(prefixNow);
 		loadWeekSchedule(prefixNow);
@@ -50,9 +51,9 @@ $( document ).ready(function() {
 		console.log(prefix);
 		
 		$(".schedule-day .period-schedule").data("prefix", prefix).text("Data: " + prefix.slice(6, 8) + "/" + prefix.slice(4, 6) + "/" + prefix.slice(0,4));
-		loadFromDB("scheduledTime", prefix);
-		loadFromDB("freeTime", prefix);
-		loadFromDB("blockedTime", prefix);
+		loadFromDBToDailyTable("scheduledTime", prefix);
+		loadFromDBToDailyTable("freeTime", prefix);
+		loadFromDBToDailyTable("blockedTime", prefix);
 	}
 
 	function loadWeekSchedule(prefix) {
@@ -72,6 +73,12 @@ $( document ).ready(function() {
 		var prefixStart = firstDay.toISOString().slice(0,10).replace(/-/g,"");
 		var prefixEnd = lastDay.toISOString().slice(0,10).replace(/-/g,"");
 		$(".schedule-week .period-schedule").data("prefix", prefixStart).text("Semana: " + prefixStart.slice(6, 8) + "/" + prefixStart.slice(4, 6) + "/" + prefixStart.slice(0,4) + " - " + prefixEnd.slice(6, 8) + "/" + prefixEnd.slice(4, 6) + "/" + prefixEnd.slice(0,4));
+
+		var dateIteration = new Date(firstDay.getTime());
+		for(i = 0; i < 6; i++) {
+			dateIteration.setDate(firstDay.getDate() + i);
+			loadFromDBToWeeklyTable((i+1), dateIteration.toISOString().slice(0,10).replace(/-/g,""));
+		}
 	}
 
 	function emptyDB(table){
@@ -88,8 +95,7 @@ $( document ).ready(function() {
         }
 	}
 
-	// Iterate over each record in a table and display it
-	function loadFromDB(tableName, date){
+	function loadFromDBToDailyTable(tableName, date){
 		emptyDiv(tableName);
 		var objectStore = db.transaction(tableName).objectStore(tableName);
   
@@ -97,9 +103,23 @@ $( document ).ready(function() {
 		    var cursor = event.target.result;
 		    if (cursor) {
 				addRowInHTMLDiv(tableName, cursor.key, cursor.value);
-		        cursor.continue();
+		      cursor.continue();
 		    }
         }; 
+	}
+
+	function loadFromDBToWeeklyTable(columnNumber, date){
+		console.log("before..." ,columnNumber, date);
+		var objectStore = db.transaction("freeTime").objectStore("freeTime");
+  
+      objectStore.index('date').openCursor(IDBKeyRange.bound(date+"00", date+"23"), 'next').onsuccess = function(event) {
+	     var cursor = event.target.result;
+	     if (cursor) {
+			 console.log(columnNumber + "-" + cursor.key.slice(8,10) + " - " + cursor.value);
+			 $("tbody tr td."+cursor.key.slice(8,10)+"hrs:nth-child("+(columnNumber)+")", $("#week-schedule")).removeClass("filled").addClass("not-filled");
+	       cursor.continue();
+	     }
+      }; 
 	}
 
 	function removeFromDB(tableName, itemId){
@@ -109,7 +129,7 @@ $( document ).ready(function() {
         request.onsuccess = function(event) {
 		  var d = new Date();
 		  var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
-		  loadFromDB(tableName, prefixNow);
+		  loadFromDBToDailyTable(tableName, prefixNow);
         };		
 	}
 
@@ -170,7 +190,7 @@ $( document ).ready(function() {
 					  removeFromDB("freeTime", objThis.data("id"));
                       var d = new Date();
 				   	  var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd					  
-					  loadFromDB("scheduledTime", prefixNow);
+					  loadFromDBToDailyTable("scheduledTime", prefixNow);
 					  $(".custom-combobox-input").val("");
 					  $( this ).dialog( "close" );
 					},
@@ -206,7 +226,7 @@ $( document ).ready(function() {
 					  removeFromDB("blockedTime", objThis.data("id"));
                       var d = new Date();
 				   	  var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd					  
-					  loadFromDB("freeTime", prefixNow);
+					  loadFromDBToDailyTable("freeTime", prefixNow);
 					  $( this ).dialog( "close" );
 					},
 					"Manter bloqueado": function() {
@@ -271,15 +291,15 @@ $( document ).ready(function() {
 	}
 
 	function fillSample(prefix) {
-		if( (prefix % 2) == 0 ) {
+		//if( (prefix % 2) == 0 ) {
 			obj = {'date': prefix+'09', 'time': '09-10', 'customer': 1};
 			addToScheduledTime(obj);
 			console.log("par " + prefix);
-		} else {
+		/*} else {
 			obj = {'date': prefix+'09', 'time': '09-10'};
 			addToFreeTime(obj);
 			console.log("impar " + prefix);
-		}
+		}*/
 
 
 		obj = {'date': prefix+'08', 'time': '08-09', 'customer': 2};
@@ -288,6 +308,8 @@ $( document ).ready(function() {
 		obj = {'date': prefix+'06', 'time': '06-07'};
 		addToFreeTime(obj);
 		obj = {'date': prefix+'07', 'time': '07-08'};
+		addToFreeTime(obj);
+		obj = {'date': prefix+'10', 'time': '10-11'};
 		addToFreeTime(obj);
 		obj = {'date': prefix+'11', 'time': '11-12'};
 		addToFreeTime(obj);
@@ -313,14 +335,14 @@ $( document ).ready(function() {
 		obj = {'date': prefix+'13', 'time': '13-14', 'reason': 'Almoço + levando cachorro para passear '};
 		addToBlockedTime(obj);
 
-		if( (prefix % 2) == 0 ) {
+		//if( (prefix % 2) == 0 ) {
 			obj = {'date': prefix+'22', 'time': '22-23', 'reason': 'Problema é meu'};
 			addToBlockedTime(obj);
-		}
+		/*}
 		else {
 			obj = {'date': prefix+'22', 'time': '22-23'};
 			addToFreeTime(obj);
-		}
+		}*/
 	}
 
 	function scheculerSlider() {
