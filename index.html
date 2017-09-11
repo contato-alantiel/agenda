@@ -79,28 +79,24 @@
               <h2>Agenda: <a href="#" class="schedule-toggle-link active">diária</a> | <a href="#" class="schedule-toggle-link">semanal</a></h2>
               <div class="work--lockup schedule-toggle schedule-day">
 				  <p class="period-schedule"></p>
-                <ul class="slider">
-                  <li class="slider--item slider--item-left">
-                   <div class="slider--item-image" id="scheduledTime">
-                   </div>
-                   <p class="slider--item-title">Horários ocupados</p>
-                   <p class="slider--item-description">Clique em algum deles para ver detalhes.</p>
-                  </li>
-                  <li class="slider--item slider--item-center">
-                   <div class="slider--item-image" id="freeTime">
-                   </div>
-                   <p class="slider--item-title">Horários disponíveis</p>
-                   <p class="slider--item-description">Clique em algum dos horários disponíveis para agendar.</p>
-                  </li>
-                  <li class="slider--item slider--item-right">
-
-                   <div class="slider--item-image" id="blockedTime">
-                   </div>
-                   <p class="slider--item-title">Horários bloqueados</p>
-                   <p class="slider--item-description">Clique para saber o motivo.</p>
-                  </li>
-                </ul>
-                <div class="slider--prev">
+              <div class="day-container">
+					<div class="scheduledTime-wrapper day-container--wrapper">
+						<p>Horários ocupados:</p>
+						<div id="scheduledTime">
+						</div>
+					</div>
+					<div class="freeTime-wrapper day-container--wrapper">
+						<p>Horários disponíveis:</p>
+						<div id="freeTime">
+						</div>
+					</div>
+					<div class="blockedTime-wrapper day-container--wrapper">
+						<p>Horários bloqueados:</p>
+						<div id="blockedTime">
+						</div>
+					</div>
+              </div>
+              <div class="slider--prev">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
@@ -109,14 +105,14 @@
                     c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
                   </g>
                   </svg>
-                </div>
-                <div class="slider--next">
+              </div>
+              <div class="slider--next">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
                     <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
                   </g>
                   </svg>
-                </div>
+              </div>
               </div>
 
 			  <div class="work--lockup schedule-toggle  schedule-week hide">
@@ -326,11 +322,11 @@
 			</li>
         </ul>
       </div>
-	  <div id="dialog-scheduled" title="Aviso">
+	  <div id="dialog-scheduled" title="Aviso" class="hide">
 		  <p>Hi!</p>
 		</div>
 
-		<div id="dialog-free" title="Confirmação de agendamento">
+		<div id="dialog-free" title="Confirmação de agendamento"  class="hide">
 		  <p>
 			Horário do agendamento: <strong class="confirm-time"></strong> <br>
 			<label>Selecione o paciente para esse horário: </label> <br>
@@ -340,7 +336,7 @@
 		  </p>
 		</div>
 
-		<div id="dialog-blocked" title="Informações">
+		<div id="dialog-blocked" title="Informações" class="hide">
 		  <p>
 			Horário bloqueado: <strong class="confirm-time"></strong> <br>
 			Motivo do bloqueio: <strong class="block-reason"></strong> <br>

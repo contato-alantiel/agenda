@@ -31,7 +31,7 @@ $( document ).ready(function() {
 
 		loadDaySchedule(prefixNow);
 		loadWeekSchedule(prefixNow);
-	}, 400);
+	}, 1000);
 
 	function loadCustomers() {
 		$("#combobox").find("option:gt(0)").remove();

@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
 	 window.setTimeout(function(){
 		loadCustomers();
-	 }, 400);
+	 }, 1000);
 
 
      function loadCustomers(){
