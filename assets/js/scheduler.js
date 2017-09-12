@@ -34,7 +34,7 @@ $( document ).ready(function() {
 
 	function loadWeekSchedule(prefix) {
 		function getMonday(d) {
-		  d = today();
+		  d = new Date(d);
 		  var day = d.getDay(),
 				diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
 		  return new Date(d.setDate(diff));
@@ -85,8 +85,6 @@ $( document ).ready(function() {
 	}
 
 	function loadFromDBToWeeklyTable(columnNumber, date){
-		alert('teste');
-
 		$("tbody tr td", $("#week-schedule")).removeClass('not-filled').addClass('filled');
 
 		var objectStore = db.transaction("freeTime").objectStore("freeTime");
