@@ -55,7 +55,7 @@ $( document ).ready(function() {
 
 	loadDatabase = function(database, callback) {
 
-		fetch('/data/'+ database +'.json?r=' + Math.random())
+		fetch('https://raw.githubusercontent.com/contato-alantiel/agenda/master/data/' + database + '.json?r=' + Math.random())
 		.then(res => res.json())
 		.then((data) => {
 		  callback(data[database]);
