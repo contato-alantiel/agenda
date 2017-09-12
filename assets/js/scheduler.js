@@ -4,37 +4,15 @@ $( document ).ready(function() {
 		comboboxUI();
 		scheculerSlider();
 
-		// TODO retirar
-		emptyDB("scheduledTime");
-		emptyDB("freeTime");
-		var d = new Date();
-		d.setHours(0);
+		var d = today();
 		var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
-		console.log(prefixNow, d.toISOString(), d);
-
-		var d_1 = (function(){this.setDate(this.getDate()-1); return this}).call(new Date)
-		var d_2 = (function(){this.setDate(this.getDate()-2); return this}).call(new Date)
-		var d1 = (function(){this.setDate(this.getDate()+1); return this}).call(new Date)
-
-		var prefixD_1 = d_1.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
-		var prefixD_2 = d_2.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
-		var prefixD1 = d1.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
-
-		//past
-		var obj = {'id': '2017050104', 'date': "20170501", 'time': '04-05', 'customer': $("#combobox").val()};
-		addToScheduledTime(obj);
-
-		fillSample(prefixNow);
-		//fillSample(prefixD_1);
-		//fillSample(prefixD_2);
-		//fillSample(prefixD1);
 
 		loadDaySchedule(prefixNow);
 		loadWeekSchedule(prefixNow);
 	}, 1000);
 
 	function loadCustomers() {
-		$("#combobox").find("option:gt(0)").remove();
+		$('#combobox').find('option:gt(0)').remove();
 		$('#combobox option:eq(0)').prop('selected', true)
 
 		var objectStore = db.transaction("customer").objectStore("customer");  
@@ -48,8 +26,6 @@ $( document ).ready(function() {
 	}
 
 	function loadDaySchedule(prefix) {
-		console.log(prefix);
-		
 		$(".schedule-day .period-schedule").data("prefix", prefix).text("Data: " + prefix.slice(6, 8) + "/" + prefix.slice(4, 6) + "/" + prefix.slice(0,4));
 		loadFromDBToDailyTable("scheduledTime", prefix);
 		loadFromDBToDailyTable("freeTime", prefix);
@@ -58,7 +34,7 @@ $( document ).ready(function() {
 
 	function loadWeekSchedule(prefix) {
 		function getMonday(d) {
-		  d = new Date(d);
+		  d = today();
 		  var day = d.getDay(),
 				diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
 		  return new Date(d.setDate(diff));
@@ -109,14 +85,16 @@ $( document ).ready(function() {
 	}
 
 	function loadFromDBToWeeklyTable(columnNumber, date){
-		console.log("before..." ,columnNumber, date);
+		alert('teste');
+
+		$("tbody tr td", $("#week-schedule")).removeClass('not-filled').addClass('filled');
+
 		var objectStore = db.transaction("freeTime").objectStore("freeTime");
   
       objectStore.index('date').openCursor(IDBKeyRange.bound(date+"00", date+"23"), 'next').onsuccess = function(event) {
 	     var cursor = event.target.result;
 	     if (cursor) {
-			 console.log(columnNumber + "-" + cursor.key.slice(8,10) + " - " + cursor.value);
-			 $("tbody tr td."+cursor.key.slice(8,10)+"hrs:nth-child("+(columnNumber)+")", $("#week-schedule")).removeClass("filled").addClass("not-filled");
+			 $("tbody tr td."+cursor.key.slice(8,10)+":nth-child("+(columnNumber)+")", $("#week-schedule")).removeClass("filled").addClass("not-filled");
 	       cursor.continue();
 	     }
       }; 
@@ -127,7 +105,7 @@ $( document ).ready(function() {
                 .objectStore(tableName)
                 .delete(itemId);
         request.onsuccess = function(event) {
-		  var d = new Date();
+		  var d = today();
 		  var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd
 		  loadFromDBToDailyTable(tableName, prefixNow);
         };		
@@ -185,11 +163,12 @@ $( document ).ready(function() {
 				  modal: true,
 				  buttons: {
 					"Agendar": function() {
-					  var toSave = {'date': ""+objThis.data("date"), 'time': objThis.data("time"), 'customer': $("#combobox").val()};
+					  var toSave = {'date': ""+objThis.data("date"), 'time': objThis.data("time"), 'customer': parseInt($("#combobox").val())};
+					  console.log(toSave);
 					  addToScheduledTime(toSave);
 					  removeFromDB("freeTime", objThis.data("id"));
-                      var d = new Date();
-				   	  var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd					  
+                 var d = today();
+				     var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd					  
 					  loadFromDBToDailyTable("scheduledTime", prefixNow);
 					  $(".custom-combobox-input").val("");
 					  $( this ).dialog( "close" );
@@ -224,8 +203,8 @@ $( document ).ready(function() {
 					  var toSave = {'date': ""+objThis.data("date"), 'time': objThis.data("time")};
 					  addToFreeTime(toSave);
 					  removeFromDB("blockedTime", objThis.data("id"));
-                      var d = new Date();
-				   	  var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd					  
+                 var d = today();
+				     var prefixNow = d.toISOString().slice(0,10).replace(/-/g,""); //yyyymmdd					  
 					  loadFromDBToDailyTable("freeTime", prefixNow);
 					  $( this ).dialog( "close" );
 					},
@@ -239,8 +218,6 @@ $( document ).ready(function() {
 	}
 
 	function addToScheduledTime(schedulerOBJ){
-		console.log(schedulerOBJ);
-
 
 		var request = db.transaction(["scheduledTime"], "readwrite")
                 .objectStore("scheduledTime")
@@ -256,9 +233,6 @@ $( document ).ready(function() {
 	}
 
 	function addToFreeTime(schedulerOBJ){
-		console.log(schedulerOBJ);
-
-
 		var request = db.transaction(["freeTime"], "readwrite")
                 .objectStore("freeTime")
                 .add(schedulerOBJ);
@@ -274,8 +248,6 @@ $( document ).ready(function() {
 
 
 	function addToBlockedTime(schedulerOBJ){
-		console.log(schedulerOBJ);
-
 
 		var request = db.transaction(["blockedTime"], "readwrite")
                 .objectStore("blockedTime")
@@ -288,61 +260,6 @@ $( document ).ready(function() {
         request.onerror = function(event) {
                 alert("Ocorreu algum erro! ");       
         }
-	}
-
-	function fillSample(prefix) {
-		//if( (prefix % 2) == 0 ) {
-			obj = {'date': prefix+'09', 'time': '09-10', 'customer': 1};
-			addToScheduledTime(obj);
-			console.log("par " + prefix);
-		/*} else {
-			obj = {'date': prefix+'09', 'time': '09-10'};
-			addToFreeTime(obj);
-			console.log("impar " + prefix);
-		}*/
-
-
-		obj = {'date': prefix+'08', 'time': '08-09', 'customer': 2};
-		addToScheduledTime(obj);
-
-		obj = {'date': prefix+'06', 'time': '06-07'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'07', 'time': '07-08'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'10', 'time': '10-11'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'11', 'time': '11-12'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'14', 'time': '14-15'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'15', 'time': '15-16'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'16', 'time': '16-17'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'17', 'time': '17-18'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'18', 'time': '18-19'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'19', 'time': '19-20'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'21', 'time': '21-22'};
-		addToFreeTime(obj);
-		obj = {'date': prefix+'20', 'time': '20-21'};
-		addToFreeTime(obj);
-
-		obj = {'date': prefix+'12', 'time': '12-13', 'reason': 'Almoço'};
-		addToBlockedTime(obj);
-		obj = {'date': prefix+'13', 'time': '13-14', 'reason': 'Almoço + levando cachorro para passear '};
-		addToBlockedTime(obj);
-
-		//if( (prefix % 2) == 0 ) {
-			obj = {'date': prefix+'22', 'time': '22-23', 'reason': 'Problema é meu'};
-			addToBlockedTime(obj);
-		/*}
-		else {
-			obj = {'date': prefix+'22', 'time': '22-23'};
-			addToFreeTime(obj);
-		}*/
 	}
 
 	function scheculerSlider() {
@@ -386,6 +303,12 @@ $( document ).ready(function() {
 		  $(".schedule-toggle-link").toggleClass("active");
 		  $(".schedule-toggle").toggleClass("hide");
 	});
+
+	function today() {
+		var d = new Date();
+		d.setHours(0);
+		return d;
+	}
 
 	function comboboxUI() {
 		loadCustomers();

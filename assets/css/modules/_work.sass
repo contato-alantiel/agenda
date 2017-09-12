@@ -20,6 +20,21 @@
     background-color: #fff
     color: #000
 
+a
+  color: #d5d5d5
+
+.dialog
+  p
+    display: none
+
+.dialog.ui-dialog-content
+  p
+    display: block
+
+.ui-dialog-content
+  p
+    display: block
+
 .work
   position: relative
   display: flex
@@ -52,22 +67,16 @@
   .day-container
     position: relative
     padding: 0 55px
+    line-height: 1em
 
     &--wrapper
       width: 32%
       float: left
       display: block
+      text-align: center
 
   &--lockup
     position: relative
-
-    .slider
-      position: relative
-      display: flex
-      width: 80%
-      margin: 0 auto
-      padding: 0
-      list-style: none
 
     .slider--next,
     .slider--prev
@@ -114,10 +123,27 @@
 
 @media (max-width: 600px)
 
-  .day-container
-    padding: 0 0
 
   .work
+
+    line-height: 1.1
+    top: 75px
+    justify-content: initial
+
+    .period-schedule
+      line-height: 30px
+
+    h2
+      font-size: 23px
+
+    .day-container
+      padding: 0 0
+      line-height: 0.8em
+
+      p
+        line-height: 1em
+        margin-top: 5px
+        margin-bottom: 5px
 
     &--lockup
 

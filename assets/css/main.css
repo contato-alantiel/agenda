@@ -897,6 +897,26 @@ table {
 }
 
 /* line 23, modules/_work.sass */
+a {
+  color: #d5d5d5;
+}
+
+/* line 27, modules/_work.sass */
+.dialog p {
+  display: none;
+}
+
+/* line 31, modules/_work.sass */
+.dialog.ui-dialog-content p {
+  display: block;
+}
+
+/* line 35, modules/_work.sass */
+.ui-dialog-content p {
+  display: block;
+}
+
+/* line 38, modules/_work.sass */
 .work {
   position: relative;
   display: flex;
@@ -909,57 +929,50 @@ table {
   line-height: 1.2;
 }
 @media (max-width: 1180px) {
-  /* line 23, modules/_work.sass */
+  /* line 38, modules/_work.sass */
   .work {
     max-width: 100%;
   }
 }
-/* line 37, modules/_work.sass */
+/* line 52, modules/_work.sass */
 .work h2 {
   margin: 0;
   font-size: 30px;
   text-align: center;
 }
 @media (max-width: 1180px) {
-  /* line 37, modules/_work.sass */
+  /* line 52, modules/_work.sass */
   .work h2 {
     font-size: 25px;
   }
 }
-/* line 45, modules/_work.sass */
+/* line 60, modules/_work.sass */
 .work h2 a {
   color: #3B8686;
   text-decoration: none;
 }
-/* line 49, modules/_work.sass */
+/* line 64, modules/_work.sass */
 .work .period-schedule {
   text-align: center;
 }
-/* line 52, modules/_work.sass */
+/* line 67, modules/_work.sass */
 .work .day-container {
   position: relative;
   padding: 0 55px;
+  line-height: 1em;
 }
-/* line 56, modules/_work.sass */
+/* line 72, modules/_work.sass */
 .work .day-container--wrapper {
   width: 32%;
   float: left;
   display: block;
+  text-align: center;
 }
-/* line 61, modules/_work.sass */
+/* line 78, modules/_work.sass */
 .work--lockup {
   position: relative;
 }
-/* line 64, modules/_work.sass */
-.work--lockup .slider {
-  position: relative;
-  display: flex;
-  width: 80%;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-/* line 72, modules/_work.sass */
+/* line 81, modules/_work.sass */
 .work--lockup .slider--next,
 .work--lockup .slider--prev {
   position: absolute;
@@ -973,42 +986,62 @@ table {
   border-radius: 50%;
   cursor: pointer;
 }
-/* line 85, modules/_work.sass */
+/* line 94, modules/_work.sass */
 .work--lockup .slider--next svg,
 .work--lockup .slider--prev svg {
   width: 20px;
   fill: #fff;
 }
-/* line 89, modules/_work.sass */
+/* line 98, modules/_work.sass */
 .work--lockup .slider--next {
   right: 0;
 }
-/* line 92, modules/_work.sass */
+/* line 101, modules/_work.sass */
 .work--lockup .slider--prev {
   left: 0;
 }
 
 @media (max-width: 900px) {
-  /* line 101, modules/_work.sass */
+  /* line 110, modules/_work.sass */
   .work--lockup .slider--next,
   .work--lockup .slider--prev {
     top: 130px;
   }
 }
 @media (max-width: 767px) {
-  /* line 111, modules/_work.sass */
+  /* line 120, modules/_work.sass */
   .work--lockup .slider--next,
   .work--lockup .slider--prev {
     top: 105px;
   }
 }
 @media (max-width: 600px) {
-  /* line 117, modules/_work.sass */
-  .day-container {
-    padding: 0 0;
+  /* line 127, modules/_work.sass */
+  .work {
+    line-height: 1.1;
+    top: 75px;
+    justify-content: initial;
   }
-
-  /* line 124, modules/_work.sass */
+  /* line 133, modules/_work.sass */
+  .work .period-schedule {
+    line-height: 30px;
+  }
+  /* line 136, modules/_work.sass */
+  .work h2 {
+    font-size: 23px;
+  }
+  /* line 139, modules/_work.sass */
+  .work .day-container {
+    padding: 0 0;
+    line-height: 0.8em;
+  }
+  /* line 143, modules/_work.sass */
+  .work .day-container p {
+    line-height: 1em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  /* line 150, modules/_work.sass */
   .work--lockup .slider--next,
   .work--lockup .slider--prev {
     top: 0;

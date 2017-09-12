@@ -1,0 +1,14 @@
+{
+	"scheduledTimes": [
+		{
+			"date": "2017091217",
+			"time": "17-18",
+			"customer": 2
+		},
+		{
+			"date": "2017091220",
+			"time": "20-21",
+			"customer": 1
+		}
+	]
+}

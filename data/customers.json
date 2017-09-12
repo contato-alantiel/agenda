@@ -1,0 +1,24 @@
+{
+	"customers": [
+		{
+			"id": 1,
+			"customerName": "Alantiel",
+			"customerEmail": "alantiel@alantiel.com"
+		},
+		{
+			"id": 2,
+			"customerName": "Priscila",
+			"customerEmail": "yamanishiprisca@gmail.com"
+		},
+		{
+			"id": 3,
+			"customerName": "Danilo",
+			"customerEmail": "delnilo@uol.com.br"
+		},
+		{
+			"id": 4,
+			"customerName": "Teste 4",
+			"customerEmail": "teste4@teste.com"
+		}
+	]
+}
