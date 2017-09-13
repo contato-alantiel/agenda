@@ -1,5 +1,4 @@
 var db;
-var request = window.indexedDB.open("RodrigoFisio", 1); //with version
 
 //TODO validar sempre se eh necessario resetar
 var restoreDB = true; // true/false - reset and import
@@ -7,6 +6,8 @@ var restoreDB = true; // true/false - reset and import
 $( document ).ready(function() {
 	if( restoreDB && window.indexedDB.deleteDatabase("RodrigoFisio"))
 		console.log('Database was dropped successfully!')
+
+	var request = window.indexedDB.open("RodrigoFisio", 1); //with version
 
 	//prefixes of implementation that we want to test
 	window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -54,13 +55,11 @@ $( document ).ready(function() {
 	}
 
 	loadDatabase = function(database, callback) {
-
-		fetch('https://raw.githubusercontent.com/contato-alantiel/agenda/master/data/' + database + '.json?r=' + Math.random())
-		.then(res => res.json())
-		.then((data) => {
-		  callback(data[database]);
-		})
-		.catch(err => console.error(err));
+		$.getJSON('https://raw.githubusercontent.com/contato-alantiel/agenda/master/data/' + database + '.json?r=' + Math.random(), 
+		function(data) 
+		{
+		   callback(data[database]);
+		});
 	}
 
 	loadCustomerFromBackup = function(db) {
