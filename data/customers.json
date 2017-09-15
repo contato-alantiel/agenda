@@ -3,22 +3,26 @@
 		{
 			"id": 1,
 			"customerName": "Alantiel",
-			"customerEmail": "alantiel@alantiel.com"
+			"customerEmail": "alantiel@alantiel.com",
+			"customerPhone": "11984425932"
 		},
 		{
 			"id": 2,
 			"customerName": "Priscila",
-			"customerEmail": "yamanishiprisca@gmail.com"
+			"customerEmail": "yamanishiprisca@gmail.com",
+			"customerPhone": "11995724599"
 		},
 		{
 			"id": 3,
 			"customerName": "Danilo",
-			"customerEmail": "delnilo@uol.com.br"
+			"customerEmail": "delnilo@uol.com.br",
+			"customerPhone": "11970354423"
 		},
 		{
 			"id": 4,
 			"customerName": "Teste 4",
-			"customerEmail": "teste4@teste.com"
+			"customerEmail": "teste4@teste.com",
+			"customerPhone": "11912345678"
 		}
 	]
 }
