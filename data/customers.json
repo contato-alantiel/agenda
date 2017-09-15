@@ -4,25 +4,29 @@
 			"id": 1,
 			"customerName": "Alantiel",
 			"customerEmail": "alantiel@alantiel.com",
-			"customerPhone": "11984425932"
+			"customerPhone": "11984425932",
+			"customerImages": []
 		},
 		{
 			"id": 2,
 			"customerName": "Priscila",
 			"customerEmail": "yamanishiprisca@gmail.com",
-			"customerPhone": "11995724599"
+			"customerPhone": "11995724599",
+			"customerImages": []
 		},
 		{
 			"id": 3,
 			"customerName": "Danilo",
 			"customerEmail": "delnilo@uol.com.br",
-			"customerPhone": "11970354423"
+			"customerPhone": "11970354423",
+			"customerImages": []
 		},
 		{
 			"id": 4,
 			"customerName": "Teste 4",
 			"customerEmail": "teste4@teste.com",
-			"customerPhone": "11912345678"
+			"customerPhone": "11912345678",
+			"customerImages": []
 		}
 	]
 }
